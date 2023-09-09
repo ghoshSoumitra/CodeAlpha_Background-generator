@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background-Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header><nav>
+    Background-Generator
+  </nav>
+  </header>  
+  
+    <div class="change">
+     <button onclick="changebackground()">Change Background</button>
+     <div class="copied">
+        <h4 id="hex">
+        </h4>
+        <p id="para"></p>
+     </div>
+      
+         <button id="copy" onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+ 
+    <Script>
+        var hex=document.getElementById('hex')
+        var para=document.getElementById('para')
+        var body=document.body;
+        var hexcode='0123456789ABCDEF'
+        var copybtn=document.getElementById('copy')
+        function changebackground(){
+            var hash='#'
+            for(var i=0;i<6;i++){
+                 hash+=hexcode[Math.floor(Math.random()*16)]
+            }
+            body.style.backgroundColor=`${hash}`;
+            hex.innerText=hash
+            para.innerText=""
+            copybtn.style.display="block"
+            hex.style.display="block";
+            para.style.display="none"
+        }
+        function copyToClipboard() {
+    var textToCopy = hex.innerText;
+    var textArea = document.createElement('textarea');
+    textArea.value = textToCopy;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    para.style.display="block"
+    para.innerText="copied"
+}
+    </Script>
+</body>
+</html>
